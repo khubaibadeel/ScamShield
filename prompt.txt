@@ -1,0 +1,109 @@
+Build a contest-ready web application named ScamShield.
+
+Goal:
+Users paste a suspicious WhatsApp message, SMS, email, job offer, or marketplace message. The app analyzes the text for common scam warning signs and provides a cautious risk assessment.
+
+Tech:
+- React
+- TypeScript
+- Vite
+- Plain CSS
+- No UI framework
+- No database
+- No authentication
+- No external API in this task
+
+Required user flow:
+1. User pastes a message.
+2. User clicks Analyze Message.
+3. App displays:
+   - Risk score from 0 to 100
+   - LOW, MEDIUM, or HIGH risk
+   - Short risk summary
+   - Detected warning signs
+   - Suspicious phrases highlighted in the original message
+   - Recommended safe actions
+   - Disclaimer that the result is guidance and not proof of fraud
+4. User can reset, copy the result, and load sample messages.
+
+Detection categories:
+- urgency
+- threats
+- password, PIN, OTP, or verification-code requests
+- payment or processing-fee requests
+- prizes, lotteries, and fake rewards
+- suspicious or shortened links
+- impersonation of banks, government, delivery services, employers, or relatives
+- secrecy requests
+- remote-access software requests
+- unrealistic investment returns, salaries, or offers
+
+Scoring:
+- 0-24 LOW
+- 25-54 MEDIUM
+- 55-100 HIGH
+- Cap score at 100
+- Multiple matches in the same category should not inflate the score excessively
+
+Language rules:
+- Never state that a message is definitely fraudulent.
+- Use wording such as “shows common scam warning signs.”
+- Do not advise users to click links or contact phone numbers contained in the analyzed message.
+
+UI:
+- Modern cybersecurity-style interface
+- Responsive on desktop and mobile
+- Strong readable contrast
+- Hero title and short explanation
+- Large message input
+- Analyze button
+- Three sample-message buttons
+- Results dashboard
+- Risk meter
+- Warning-sign cards
+- Highlighted-message section
+- Safety recommendations
+- Privacy note stating that local analysis does not upload the pasted message
+
+Architecture:
+- Keep detection rules in src/data/scamRules.ts
+- Keep analysis logic in src/services/scamAnalyzer.ts
+- Keep shared types in src/types
+- Use reusable React components
+- Avoid one very large App.tsx file
+
+Suggested components:
+- Header
+- MessageAnalyzer
+- SampleMessages
+- RiskScore
+- WarningSigns
+- HighlightedMessage
+- SafetyActions
+- Disclaimer
+- Footer
+
+Samples:
+Include realistic examples for:
+1. Fake bank verification message
+2. Fake job offer with registration fee
+3. Prize or lottery scam
+
+Quality:
+- Handle empty input
+- Handle very long text
+- Avoid unsafe innerHTML
+- Highlight matched phrases safely using React elements
+- Add accessible labels and keyboard focus states
+- Add only focused tests for the scamAnalyzer scoring logic
+- Run the focused tests and npm build
+- Do not add broad test suites
+- Do not add unrelated features
+- Do not initialize deployment yet
+
+At completion, provide:
+- Files created
+- Main design decisions
+- Commands to run the app
+- Focused test result
+- Build result
