@@ -1,7 +1,7 @@
 import type { AiAnalysisResult, AiWarningSeverity } from '../../src/types/index.js';
 
 const GEMINI_TIMEOUT_MS = 8_000;
-const GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'] as const;
+const GEMINI_MODELS = ['gemini-3.5-flash-lite', 'gemini-3.5-flash'] as const;
 const responseSchema = {
   type: 'object', additionalProperties: false,
   required: ['score', 'riskLevel', 'summary', 'warningSigns', 'safeActions', 'disclaimer'],

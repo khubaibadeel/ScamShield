@@ -35,8 +35,8 @@ describe('analyzeWithGemini', () => {
 
     expect(result.score).toBe(55);
     expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock.mock.calls[0][0]).toContain('/models/gemini-2.5-flash:generateContent');
-    expect(fetchMock.mock.calls[1][0]).toContain('/models/gemini-2.5-flash-lite:generateContent');
+    expect(fetchMock.mock.calls[0][0]).toContain('/models/gemini-3.5-flash-lite:generateContent');
+    expect(fetchMock.mock.calls[1][0]).toContain('/models/gemini-3.5-flash:generateContent');
     expect(errorSpy).toHaveBeenCalledWith(
       'Gemini request failed',
       expect.stringContaining('"status":404')
@@ -55,6 +55,6 @@ describe('analyzeWithGemini', () => {
 
     await expect(analyzeWithGemini('test message', 'secret-key')).rejects.toThrow('Gemini request failed (400)');
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(fetchMock.mock.calls[0][0]).toContain('/models/gemini-2.5-flash:generateContent');
+    expect(fetchMock.mock.calls[0][0]).toContain('/models/gemini-3.5-flash-lite:generateContent');
   });
 });
