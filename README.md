@@ -1,32 +1,124 @@
-# React + TypeScript + Vite
+# ScamShield
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ScamShield is an AI-powered scam message analyzer that helps users identify suspicious warning signs in SMS messages, emails, job offers, lottery claims, marketplace messages, and online chats.
 
-Currently, two official plugins are available:
+It combines a deterministic local detection engine with optional Gemini-enhanced analysis. If AI analysis is unavailable, ScamShield automatically falls back to local analysis so the product remains functional.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+**Try ScamShield:**  
+https://scamshield-sooty-eta.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Source Code:**  
+https://github.com/khubaibadeel/ScamShield
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## The Problem
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+Scam messages often use urgency, impersonation, threats, fake rewards, suspicious links, payment requests, and credential requests to pressure people into acting quickly.
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Many users can sense that a message looks suspicious but may not understand:
+
+- Which parts of the message are dangerous
+- Why those phrases are concerning
+- What actions they should avoid
+- How to verify the message safely
+
+ScamShield turns a suspicious message into a clear, understandable risk assessment.
+
+---
+
+## The Solution
+
+Users paste a suspicious message into ScamShield and receive:
+
+- A risk score from 0 to 100
+- A LOW, MEDIUM, or HIGH risk rating
+- Highlighted suspicious phrases
+- Detected warning-sign categories
+- Explanations for each warning sign
+- Recommended safety actions
+- An educational disclaimer
+- AI-enhanced analysis when available
+- Automatic local fallback when AI is unavailable
+
+ScamShield does not claim that a message is definitely fraudulent. It identifies common warning signs and encourages users to verify communications independently.
+
+---
+
+## Key Features
+
+### Local Scam Detection
+
+The built-in rule-based analyzer detects patterns related to:
+
+- Urgency and artificial deadlines
+- Threats and intimidation
+- OTP, PIN, password, and credential requests
+- Processing fees and advance-payment requests
+- Fake prizes, lotteries, and rewards
+- Suspicious and shortened links
+- Bank, employer, delivery-service, and government impersonation
+- Requests for secrecy
+- Remote-access software requests
+- Unrealistic job offers and investment returns
+
+### AI-Enhanced Analysis
+
+ScamShield optionally uses Gemini to produce:
+
+- A contextual risk score
+- A clear summary
+- Structured warning signs
+- Redacted evidence
+- Personalized safety guidance
+- Cautious, non-definitive conclusions
+
+Current model fallback order:
+
+1. `gemini-3.5-flash-lite`
+2. `gemini-3.5-flash`
+
+The second model is attempted only when the first model returns HTTP 404.
+
+### Safe Local Fallback
+
+If the Gemini API is unavailable, times out, returns an invalid response, or is not configured, ScamShield automatically displays the local analysis instead.
+
+The product remains usable without AI access.
+
+### Privacy-Aware Design
+
+- Local analysis stays inside the browser.
+- AI-enhanced analysis may send pasted text to the configured Gemini service.
+- Users are advised to remove personal and financial information before analysis.
+- The Gemini API key is stored only in the server environment.
+- The API key is never exposed through frontend Vite variables.
+
+### Responsive Interface
+
+The interface is optimized for desktop and mobile devices with:
+
+- Accessible controls
+- Full-width mobile buttons
+- Responsive warning cards
+- Clear risk visualization
+- No unsafe HTML injection
+- Safe React-based phrase highlighting
+
+---
+
+## How It Works
+
+```text
+User pastes a message
+        ↓
+Local rule-based analysis runs
+        ↓
+Frontend requests optional AI analysis
+        ↓
+Gemini succeeds → AI-enhanced report
+Gemini fails    → Local fallback report
+        ↓
+Risk score, warning signs, highlights, and safety actions are displayed
