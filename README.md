@@ -7,7 +7,10 @@ It combines a deterministic local detection engine with optional Gemini-enhanced
 ## Live Demo
 
 **Try ScamShield:**  
+Hosted on Vercel and accessible directly in your browser.
+
 https://scamshield-sooty-eta.vercel.app
+
 
 **Source Code:**  
 https://github.com/khubaibadeel/ScamShield
